@@ -14,15 +14,16 @@ juliet-testsuites-sample
 2. [설정 방법](#setting)
 3. [참고사항](#ref)
 
-github 설정 및 사용방법은
-
-
-
 # <a name="quickstart"></a>Quickstart
 
+	$ export ROOT_DIR=/path/to/clone/juliet-testsuites-sample
+	$ git config --global user.email "you@example.com"
+	$ git config --global user.name "Your Name"
 	$ git clone https://github.com/thkim312/juliet-testsuites-sample.git
-	$ 
-	$ ./build.sh
+	$ cd juliet-testsuites-sample
+	$ cp $(ROOT_DIR)/testsuites/$(CWE_ID)/s$(NUM)/$(SELECTED_30_SAMPLES) $(ROOT_DIR)/sample/$(UNIV)/$(CWE_ID)/s$(NUM)
+	$ git add .
+	$ git push origin master
   
 # <a name="setting"></a>설정 방법
 
