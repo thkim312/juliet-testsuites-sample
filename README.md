@@ -1,7 +1,7 @@
 juliet-testsuites-sample
 ===============================================================
 
-이 저장소는 juliet-testsuite v1.3 중 CWE-121, 190, ?를 대상으로 각 학교 별로 디렉토리 당 테스팅 샘플 30개씩을 추출하여 공유하는 곳입니다.
+이 저장소는 juliet-testsuite v1.3 중 CWE-121, 190, ?를 대상으로 각 학교 별로 디렉토리 당 테스팅 샘플 30개씩을 추출하여 공유하는 곳입니다. (good/bad 혼합된 코드 중 C 소스 대상)
 
 * 홍익대: `CWE-121_Stack_Based_Buffer_Overflow/s01,s02,s03`
 * 산업기술대: `CWE-121_Stack_Based_Buffer_Overflow/s04,s05,s06`
