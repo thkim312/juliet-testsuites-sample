@@ -16,7 +16,7 @@ juliet-testsuites-sample
 
 # <a name="quickstart"></a>Quickstart
 
-	$ export ROOT_DIR=/path/to/clone/juliet-testsuites-sample
+	$ export ROOT_DIR=/PATH/TO/CLONE/juliet-testsuites-sample
 	$ git config --global user.email "you@example.com"
 	$ git config --global user.name "Your Name"
 	$ git clone https://github.com/thkim312/juliet-testsuites-sample.git
