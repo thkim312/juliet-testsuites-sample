@@ -25,6 +25,7 @@ juliet-testsuites-sample
 	# cp $(ROOT_DIR)/testsuites/$(CWE_ID)/s$(NUM)/$(SELECTED_SAMPLES) $(ROOT_DIR)/sample/$(UNIV_NAME)/$(CWE_ID)/s$(NUM)
 	# git add .
 	# git commit -m "Your tag message"
+	# git pull
 	# git push origin master
   
 # <a name="setting"></a>설정 방법
