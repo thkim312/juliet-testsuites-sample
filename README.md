@@ -4,7 +4,7 @@ juliet-testsuites-sample
 이 저장소는 juliet-testsuite v1.3 중 `CWE-121, CWE-190, CWE-476`을 대상으로 각 학교 별로 디렉토리 당 테스트 샘플 30개씩을 추출하여 공유하는 곳입니다(good/bad 혼합된 코드 중 C 소스 대상). 추출한 샘플은 학교 별로 분류된 디렉토리에 복사하여 주시기 바랍니다.
 
 * 홍익대(hongik): `CWE121_Stack_Based_Buffer_Overflow/s01,s02,s03`
-* 산업기술대(kpu): `CWE121_Stack_Based_Buffer_Overflow/s04,s05,s06`
+* 한국산업기술대(kpu): `CWE121_Stack_Based_Buffer_Overflow/s04,s05,s06`
 * 동국대(dongguk): `CWE121_Stack_Based_Buffer_Overflow/s07,s08,s09`
 * 고려대(korea): `CWE190_Integer_Overflow/s01,s02,s03`
 * 항공대(kau): `CWE190_Integer_Overflow/s04,s05,s06`
