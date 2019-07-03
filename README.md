@@ -16,7 +16,7 @@ juliet-testsuites-sample
 
 # <a name="quickstart"></a>Quickstart
 
-## On Linux
+## On Linux or Windows with Git Bash
 	# export ROOT_DIR=/PATH/TO/CLONE/juliet-testsuites-sample
 	# git config --global user.email "you@example.com"
 	# git config --global user.name "Your Name"
@@ -31,4 +31,7 @@ juliet-testsuites-sample
   
 # <a name="setting"></a>설정 방법
 
+
 # <a name="ref"></a>참고사항
+* [git 간편안내서](https://rogerdudler.github.io/git-guide/index.ko.html)
+* [다양한 환경에서 git 사용하기](https://git-scm.com/book/ko/v2/Appendix-A%3A-%EB%8B%A4%EC%96%91%ED%95%9C-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C-Git-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-GUI)
