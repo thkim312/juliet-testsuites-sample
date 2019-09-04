@@ -1,5 +1,5 @@
 /* TEMPLATE GENERATED TESTCASE FILE
-Filename: CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45.c
+Filename: CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45.c
 Label Definition File: CWE134_Uncontrolled_Format_String.vasinks.label.xml
 Template File: sources-vasinks-45.tmpl.c
 */
@@ -8,9 +8,9 @@ Template File: sources-vasinks-45.tmpl.c
  * CWE: 134 Uncontrolled Format String
  * BadSource: console Read input from the console
  * GoodSource: Copy a fixed string into data
- * Sinks: w32_vsnprintf
- *    GoodSink: vsnprintf with a format string
- *    BadSink : vsnprintf without a format string
+ * Sinks: vprintf
+ *    GoodSink: vwprintf with a format string
+ *    BadSink : vwprintf without a format string
  * Flow Variant: 45 Data flow: data passed as a static global variable from one function to another in the same source file
  *
  * */
@@ -22,62 +22,60 @@ Template File: sources-vasinks-45.tmpl.c
 #include <wchar.h>
 #endif
 
-static char * CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_badData;
-static char * CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_goodG2BData;
-static char * CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_goodB2GData;
+static wchar_t * CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_badData;
+static wchar_t * CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_goodG2BData;
+static wchar_t * CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_goodB2GData;
 
 #ifndef OMITBAD
 
-static void badVaSink(char * data, ...)
+static void badVaSink(wchar_t * data, ...)
 {
     {
-        char dest[100] = "";
         va_list args;
         va_start(args, data);
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
-        vsnprintf(dest, 100-1, data, args);
+        vwprintf(data, args);
         va_end(args);
-        printLine(dest);
     }
 }
 
 static void badSink()
 {
-    char * data = CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_badData;
+    wchar_t * data = CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_badData;
     badVaSink(data, data);
 }
 
-void CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_bad()
+void CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_bad()
 {
-    char * data;
-    char dataBuffer[100] = "";
+    wchar_t * data;
+    wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
     {
         /* Read input from the console */
-        size_t dataLen = strlen(data);
+        size_t dataLen = wcslen(data);
         /* if there is room in data, read into it from the console */
         if (100-dataLen > 1)
         {
             /* POTENTIAL FLAW: Read data from the console */
-            if (fgets(data+dataLen, (int)(100-dataLen), stdin) != NULL)
+            if (fgetws(data+dataLen, (int)(100-dataLen), stdin) != NULL)
             {
                 /* The next few lines remove the carriage return from the string that is
-                 * inserted by fgets() */
-                dataLen = strlen(data);
-                if (dataLen > 0 && data[dataLen-1] == '\n')
+                 * inserted by fgetws() */
+                dataLen = wcslen(data);
+                if (dataLen > 0 && data[dataLen-1] == L'\n')
                 {
-                    data[dataLen-1] = '\0';
+                    data[dataLen-1] = L'\0';
                 }
             }
             else
             {
-                printLine("fgets() failed");
-                /* Restore NUL terminator if fgets fails */
-                data[dataLen] = '\0';
+                printLine("fgetws() failed");
+                /* Restore NUL terminator if fgetws fails */
+                data[dataLen] = L'\0';
             }
         }
     }
-    CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_badData = data;
+    CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_badData = data;
     badSink();
 }
 
@@ -86,91 +84,87 @@ void CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_bad()
 #ifndef OMITGOOD
 
 /* goodG2B uses the GoodSource with the BadSink */
-static void goodG2BVaSink(char * data, ...)
+static void goodG2BVaSink(wchar_t * data, ...)
 {
     {
-        char dest[100] = "";
         va_list args;
         va_start(args, data);
         /* POTENTIAL FLAW: Do not specify the format allowing a possible format string vulnerability */
-        vsnprintf(dest, 100-1, data, args);
+        vwprintf(data, args);
         va_end(args);
-        printLine(dest);
     }
 }
 
 static void goodG2BSink()
 {
-    char * data = CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_goodG2BData;
+    wchar_t * data = CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_goodG2BData;
     goodG2BVaSink(data, data);
 }
 
 static void goodG2B()
 {
-    char * data;
-    char dataBuffer[100] = "";
+    wchar_t * data;
+    wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
     /* FIX: Use a fixed string that does not contain a format specifier */
-    strcpy(data, "fixedstringtest");
-    CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_goodG2BData = data;
+    wcscpy(data, L"fixedstringtest");
+    CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_goodG2BData = data;
     goodG2BSink();
 }
 
 /* goodB2G uses the BadSource with the GoodSink */
-static void goodB2GVaSink(char * data, ...)
+static void goodB2GVaSink(wchar_t * data, ...)
 {
     {
-        char dest[100] = "";
         va_list args;
         va_start(args, data);
         /* FIX: Specify the format disallowing a format string vulnerability */
-        vsnprintf(dest, 100-1, "%s", args);
+        vwprintf(L"%s", args);
         va_end(args);
-        printLine(dest);
     }
 }
 
 static void goodB2GSink()
 {
-    char * data = CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_goodB2GData;
+    wchar_t * data = CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_goodB2GData;
     goodB2GVaSink(data, data);
 }
 
 static void goodB2G()
 {
-    char * data;
-    char dataBuffer[100] = "";
+    wchar_t * data;
+    wchar_t dataBuffer[100] = L"";
     data = dataBuffer;
     {
         /* Read input from the console */
-        size_t dataLen = strlen(data);
+        size_t dataLen = wcslen(data);
         /* if there is room in data, read into it from the console */
         if (100-dataLen > 1)
         {
             /* POTENTIAL FLAW: Read data from the console */
-            if (fgets(data+dataLen, (int)(100-dataLen), stdin) != NULL)
+            if (fgetws(data+dataLen, (int)(100-dataLen), stdin) != NULL)
             {
                 /* The next few lines remove the carriage return from the string that is
-                 * inserted by fgets() */
-                dataLen = strlen(data);
-                if (dataLen > 0 && data[dataLen-1] == '\n')
+                 * inserted by fgetws() */
+                dataLen = wcslen(data);
+                if (dataLen > 0 && data[dataLen-1] == L'\n')
                 {
-                    data[dataLen-1] = '\0';
+                    data[dataLen-1] = L'\0';
                 }
             }
             else
             {
-                printLine("fgets() failed");
-                /* Restore NUL terminator if fgets fails */
-                data[dataLen] = '\0';
+                printLine("fgetws() failed");
+                /* Restore NUL terminator if fgetws fails */
+                data[dataLen] = L'\0';
             }
         }
     }
-    CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_goodB2GData = data;
+    CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_goodB2GData = data;
     goodB2GSink();
 }
 
-void CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_good()
+void CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_good()
 {
     goodG2B();
     goodB2G();
@@ -190,12 +184,12 @@ int main(int argc, char * argv[])
     srand( (unsigned)time(NULL) );
 #ifndef OMITGOOD
     printLine("Calling good()...");
-    CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_good();
+    CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_good();
     printLine("Finished good()");
 #endif /* OMITGOOD */
 #ifndef OMITBAD
     printLine("Calling bad()...");
-    CWE134_Uncontrolled_Format_String__char_console_w32_vsnprintf_45_bad();
+    CWE134_Uncontrolled_Format_String__wchar_t_console_vprintf_45_bad();
     printLine("Finished bad()");
 #endif /* OMITBAD */
     return 0;
